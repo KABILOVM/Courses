@@ -11,7 +11,7 @@
         :root {
             --primary: #28A9E7; /* Медицинский синий */
             --primary-dark: #1e40af;
-            --accent: #FFC107; /* Сочный оранжевый для кнопок */
+            --accent: #FFC107; /* Сочный желтый для кнопок */
             --dark: #1F2937;
             --light: #F3F4F6;
             --white: #ffffff;
@@ -301,7 +301,7 @@
             gap: 10px;
             width: 100%;
             background: var(--accent);
-            color: var(--white);
+            color: #000000; /* ЦВЕТ ТЕКСТА ИЗМЕНЕН НА ЧЕРНЫЙ */
             text-align: center;
             padding: 18px;
             border-radius: 16px;
@@ -320,6 +320,7 @@
         
         .cta-btn i {
             font-size: 1.3rem;
+            /* Иконка наследует черный цвет текста */
         }
 
         @keyframes fadeIn {
