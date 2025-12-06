@@ -9,324 +9,84 @@
     
     <style>
         :root {
-            --primary: #28A9E7; /* Медицинский синий */
+            --primary: #28A9E7;
             --primary-dark: #1e40af;
-            --accent: #FFC107; /* Сочный желтый для кнопок */
+            --accent: #FFC107;
             --dark: #1F2937;
             --light: #F3F4F6;
             --white: #ffffff;
             --success: #10B981;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.5; padding-bottom: 90px; }
 
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.5;
-            padding-bottom: 90px; /* Место для плавающей кнопки */
-        }
+        /* HEADER */
+        .header { background: var(--white); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); }
+        .lang-switch { background: #E5E7EB; border-radius: 20px; padding: 4px; display: flex; }
+        .lang-btn { border: none; background: transparent; padding: 5px 12px; border-radius: 16px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
+        .lang-btn.active { background: var(--white); color: var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
-        /* --- HEADER & LANGUAGE --- */
-        .header {
-            background: var(--white);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        .lang-switch {
-            background: #E5E7EB;
-            border-radius: 20px;
-            padding: 4px;
-            display: flex;
-        }
-
-        .lang-btn {
-            border: none;
-            background: transparent;
-            padding: 5px 12px;
-            border-radius: 16px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .lang-btn.active {
-            background: var(--white);
-            color: var(--primary);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* --- HERO SECTION (С ПАТТЕРНОМ) --- */
-        .hero {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            padding: 50px 20px;
-            text-align: center;
-            border-radius: 0 0 40px 40px;
-            margin-bottom: 25px;
-            position: relative;
-            overflow: hidden; /* Чтобы иконки не вылезали */
-        }
-
-        /* Медицинский паттерн (фон) */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.6;
-        }
-
-        /* Плавающие иконки на фоне */
-        .bg-icon {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.1);
-            font-size: 3rem;
-            z-index: 0;
-        }
+        /* HERO */
+        .hero { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: var(--white); padding: 50px 20px; text-align: center; border-radius: 0 0 40px 40px; margin-bottom: 25px; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.6; }
+        .bg-icon { position: absolute; color: rgba(255, 255, 255, 0.1); z-index: 0; }
         .icon-1 { top: 10%; left: 5%; transform: rotate(-15deg); font-size: 4rem; }
         .icon-2 { bottom: 20%; right: 5%; transform: rotate(15deg); font-size: 5rem; }
         .icon-3 { top: 15%; right: 15%; transform: rotate(10deg); font-size: 2.5rem; }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 { font-size: 1.8rem; margin-bottom: 10px; line-height: 1.2; font-weight: 800; }
+        .hero p { font-size: 1rem; opacity: 0.95; margin: 0 auto; max-width: 500px; }
+        .tag { background: rgba(255,255,255,0.25); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: inline-block; margin-bottom: 15px; backdrop-filter: blur(5px); }
 
-        .hero-content {
-            position: relative;
-            z-index: 1; /* Текст поверх фона */
-        }
+        /* GENERAL */
+        .container { padding: 0 20px; max-width: 600px; margin: 0 auto; }
+        
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .feature-card { background: var(--white); padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .feature-card:hover { transform: translateY(-3px); }
+        .feature-icon { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+        .feature-text { font-weight: 700; font-size: 0.9rem; }
+        .feature-sub { font-size: 0.75rem; color: #6B7280; }
 
-        .hero h1 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            line-height: 1.2;
-            font-weight: 800;
-        }
-
-        .hero p {
-            font-size: 1rem;
-            opacity: 0.95;
-            margin-bottom: 0;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .tag {
-            background: rgba(255,255,255,0.25);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 15px;
-            backdrop-filter: blur(5px);
-        }
-
-        /* --- CONTAINER --- */
-        .container {
-            padding: 0 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* --- FEATURES --- */
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .feature-text {
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .feature-sub {
-            font-size: 0.75rem;
-            color: #6B7280;
-        }
-
-        /* --- CITY TABS --- */
-        .tabs {
-            display: flex;
-            overflow-x: auto;
-            gap: 10px;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            scrollbar-width: none;
-        }
+        .tabs { display: flex; overflow-x: auto; gap: 10px; padding-bottom: 10px; margin-bottom: 15px; scrollbar-width: none; }
         .tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { background: var(--white); border: 1px solid #E5E7EB; padding: 12px 24px; border-radius: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; color: #6B7280; font-size: 0.95rem; transition: 0.2s; }
+        .tab-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3); }
+
+        .info-card { background: var(--white); border-radius: 20px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: none; }
+        .info-card.active { display: block; animation: fadeIn 0.4s ease-out; }
         
-        .tab-btn {
-            background: var(--white);
-            border: 1px solid #E5E7EB;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-weight: 600;
-            white-space: nowrap;
-            cursor: pointer;
-            color: #6B7280;
-            font-size: 0.95rem;
-            transition: 0.2s;
-        }
-
-        .tab-btn.active {
-            background: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
-        }
-
-        /* --- INFO BLOCKS --- */
-        .info-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            display: none;
-        }
-        
-        .info-card.active {
-            display: block;
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        .section-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
+        .section-title { font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .price-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
         .price-item:last-child { border-bottom: none; }
+        .price-val { font-weight: 800; color: var(--primary); font-size: 1.1rem; }
         
-        .price-val {
-            font-weight: 800;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-
-        .location-item {
-            margin-bottom: 15px;
-            padding-left: 15px;
-            border-left: 3px solid var(--accent);
-        }
-        
+        .location-item { margin-bottom: 15px; padding-left: 15px; border-left: 3px solid var(--accent); }
         .loc-name { font-weight: 700; display: block; font-size: 1rem; }
         .loc-addr { font-size: 0.85rem; color: #555; display: block; margin-top: 3px; }
         .loc-phone { font-size: 0.9rem; color: var(--primary); font-weight: 700; text-decoration: none; display: block; margin-top: 5px;}
 
-        /* --- INCLUDES LIST --- */
-        .includes-list {
-            list-style: none;
-        }
-        .includes-list li {
-            padding: 8px 0;
-            font-size: 0.95rem;
-            padding-left: 30px;
-            position: relative;
-        }
-        .includes-list li::before {
-            content: '\f00c';
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--success);
-            position: absolute;
-            left: 0;
-            font-size: 1.1rem;
-        }
+        .includes-list { list-style: none; }
+        .includes-list li { padding: 8px 0; font-size: 0.95rem; padding-left: 30px; position: relative; }
+        .includes-list li::before { content: '\f00c'; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--success); position: absolute; left: 0; font-size: 1.1rem; }
 
-        /* --- STICKY CTA --- */
-        .sticky-footer {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            z-index: 99;
+        /* FOOTER BTN */
+        .sticky-footer { position: fixed; bottom: 20px; left: 20px; right: 20px; z-index: 99; }
+        .cta-btn { 
+            display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; 
+            background: var(--accent); 
+            color: #000000; /* ЧЕРНЫЙ ТЕКСТ */
+            text-align: center; padding: 18px; border-radius: 16px; 
+            font-weight: 800; font-size: 1.1rem; text-decoration: none; 
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4); 
+            transition: transform 0.2s; border: none; cursor: pointer; 
         }
+        .cta-btn:active { transform: scale(0.96); }
+        .cta-btn i { font-size: 1.5rem; color: #000000; }
 
-        .cta-btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-            background: var(--accent);
-            color: #000000; /* ЦВЕТ ТЕКСТА ИЗМЕНЕН НА ЧЕРНЫЙ */
-            text-align: center;
-            padding: 18px;
-            border-radius: 16px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            text-decoration: none;
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
-            transition: transform 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-btn:active {
-            transform: scale(0.96);
-        }
-        
-        .cta-btn i {
-            font-size: 1.3rem;
-            /* Иконка наследует черный цвет текста */
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -343,7 +103,6 @@
         <i class="fas fa-dna bg-icon icon-1"></i>
         <i class="fas fa-stethoscope bg-icon icon-2"></i>
         <i class="fas fa-heartbeat bg-icon icon-3"></i>
-
         <div class="hero-content">
             <span class="tag" data-i18n="cluster">5 Кластер</span>
             <h1 data-i18n="title">Курсы в Мед</h1>
@@ -352,28 +111,11 @@
     </section>
 
     <div class="container">
-        
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-history"></i></div>
-                <div class="feature-text">20 лет</div>
-                <div class="feature-sub" data-i18n="exp">Опыта</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
-                <div class="feature-text">7500+</div>
-                <div class="feature-sub" data-i18n="alumni">Выпускников</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
-                <div class="feature-text">AI App</div>
-                <div class="feature-sub" data-i18n="ai">Умная платформа</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-book-open"></i></div>
-                <div class="feature-text" data-i18n="free">Бесплатно</div>
-                <div class="feature-sub" data-i18n="books">Все учебники</div>
-            </div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-history"></i></div><div class="feature-text">20 лет</div><div class="feature-sub" data-i18n="exp">Опыта</div></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-user-graduate"></i></div><div class="feature-text">7500+</div><div class="feature-sub" data-i18n="alumni">Выпускников</div></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-mobile-alt"></i></div><div class="feature-text">AI App</div><div class="feature-sub" data-i18n="ai">Умная платформа</div></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-book-open"></i></div><div class="feature-text" data-i18n="free">Бесплатно</div><div class="feature-sub" data-i18n="books">Все учебники</div></div>
         </div>
 
         <div class="tabs">
@@ -389,27 +131,12 @@
             <div class="price-item"><span>Биология</span> <span class="price-val">550 с.</span></div>
             <div class="price-item"><span>Физика</span> <span class="price-val">350 с.</span></div>
             <div class="price-item"><span data-i18n="taj_lang">Тадж. язык</span> <span class="price-val">250 с.</span></div>
-            <br>
-            <p style="font-size: 0.9rem; color: #666;" data-i18n="schedule_dushanbe">⏰ Ежедневно 14:00 - 20:00</p>
-            
+            <br><p style="font-size: 0.9rem; color: #666;" data-i18n="schedule_dushanbe">⏰ Ежедневно 14:00 - 20:00</p>
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-            
             <h3 class="section-title"><i class="fas fa-map-marker-alt"></i> <span data-i18n="addr_title">Адреса</span></h3>
-            <div class="location-item">
-                <span class="loc-name" data-i18n="loc_vatan">Филиал «Ватан»</span>
-                <span class="loc-addr" data-i18n="addr_vatan">ул. Айни 29/9 (ТЦ Ватан, Садбарг)</span>
-                <a href="tel:+992003003007" class="loc-phone">📞 (+992) 003-003-007</a>
-            </div>
-            <div class="location-item">
-                <span class="loc-name" data-i18n="loc_tsum">Филиал «ЦУМ»</span>
-                <span class="loc-addr" data-i18n="addr_tsum">пр. Рудаки 66 (Пайкар)</span>
-                <a href="tel:+992003003077" class="loc-phone">📞 (+992) 003-003-077</a>
-            </div>
-            <div class="location-item">
-                <span class="loc-name" data-i18n="loc_82">Филиал «82 мкр»</span>
-                <span class="loc-addr" data-i18n="addr_82">ул. Б. Гафурова 32А (City Mall)</span>
-                <a href="tel:+992003003082" class="loc-phone">📞 (+992) 003-003-082</a>
-            </div>
+            <div class="location-item"><span class="loc-name" data-i18n="loc_vatan">Филиал «Ватан»</span><span class="loc-addr" data-i18n="addr_vatan">ул. Айни 29/9 (ТЦ Ватан, Садбарг)</span><a href="tel:+992003003007" class="loc-phone">📞 (+992) 003-003-007</a></div>
+            <div class="location-item"><span class="loc-name" data-i18n="loc_tsum">Филиал «ЦУМ»</span><span class="loc-addr" data-i18n="addr_tsum">пр. Рудаки 66, «Пайкар»</span><a href="tel:+992003003077" class="loc-phone">📞 (+992) 003-003-077</a></div>
+            <div class="location-item"><span class="loc-name" data-i18n="loc_82">Филиал «82 мкр»</span><span class="loc-addr" data-i18n="addr_82">ул. Б. Гафурова 32А, City Mall</span><a href="tel:+992003003082" class="loc-phone">📞 (+992) 003-003-082</a></div>
         </div>
 
         <div id="khujand" class="info-card">
@@ -418,54 +145,29 @@
             <div class="price-item"><span>Биология</span> <span class="price-val">500 с.</span></div>
             <div class="price-item"><span>Физика</span> <span class="price-val">250 с.</span></div>
             <div class="price-item"><span data-i18n="taj_lang">Тадж. язык</span> <span class="price-val">150 с.</span></div>
-            <br>
-            <p style="font-size: 0.9rem; color: #666;" data-i18n="schedule_khujand">⏰ Ежедневно 14:00 - 19:00</p>
-            
+            <br><p style="font-size: 0.9rem; color: #666;" data-i18n="schedule_khujand">⏰ Ежедневно 14:00 - 19:00</p>
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-            
             <h3 class="section-title"><i class="fas fa-map-marker-alt"></i> <span data-i18n="addr_title">Адреса</span></h3>
-            <div class="location-item">
-                <span class="loc-name" data-i18n="loc_coop">Филиал «Кооператор»</span>
-                <span class="loc-addr" data-i18n="addr_coop">пр. К. Худжанди 140 (Гимназия №4)</span>
-                <a href="tel:+992003003055" class="loc-phone">📞 (+992) 003-003-055</a>
-            </div>
-            <div class="location-item">
-                <span class="loc-name" data-i18n="loc_19">Филиал «19 мкр»</span>
-                <span class="loc-addr" data-i18n="addr_19">19 мкр, дом 38 (Кохи Матбуот)</span>
-                <a href="tel:+992003003066" class="loc-phone">📞 (+992) 003-003-066</a>
-            </div>
+            <div class="location-item"><span class="loc-name" data-i18n="loc_coop">Филиал «Кооператор»</span><span class="loc-addr" data-i18n="addr_coop">пр. К. Худжанди 140 (Гимназия №4)</span><a href="tel:+992003003055" class="loc-phone">📞 (+992) 003-003-055</a></div>
+            <div class="location-item"><span class="loc-name" data-i18n="loc_19">Филиал «19 мкр»</span><span class="loc-addr" data-i18n="addr_19">19 мкр, дом 38 (Кохи Матбуот)</span><a href="tel:+992003003066" class="loc-phone">📞 (+992) 003-003-066</a></div>
         </div>
 
         <div id="isfara" class="info-card">
             <h3 class="section-title"><i class="fas fa-money-bill-wave"></i> <span data-i18n="price_title">Стоимость</span></h3>
             <div class="price-item"><span data-i18n="full_pack">Полный пакет (4 предмета)</span> <span class="price-val">800 с.</span></div>
-            <br>
-            <p style="font-size: 0.9rem; color: #666;" data-i18n="schedule_isfara">⏰ Ежедневно 14:00 - 18:00</p>
-            
+            <br><p style="font-size: 0.9rem; color: #666;" data-i18n="schedule_isfara">⏰ Ежедневно 14:00 - 18:00</p>
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-            
             <h3 class="section-title"><i class="fas fa-map-marker-alt"></i> <span data-i18n="addr_title">Адрес</span></h3>
-            <div class="location-item">
-                <span class="loc-name" data-i18n="loc_new">Здание «Ҷаҳони Нав»</span>
-                <span class="loc-addr" data-i18n="addr_new">3-й этаж</span>
-                <a href="tel:+992003003099" class="loc-phone">📞 (+992) 003-003-099</a>
-            </div>
+            <div class="location-item"><span class="loc-name" data-i18n="loc_new">Здание «Ҷаҳони Нав»</span><span class="loc-addr" data-i18n="addr_new">3-й этаж</span><a href="tel:+992003003099" class="loc-phone">📞 (+992) 003-003-099</a></div>
         </div>
         
         <div id="asht" class="info-card">
             <h3 class="section-title"><i class="fas fa-money-bill-wave"></i> <span data-i18n="price_title">Стоимость</span></h3>
             <div class="price-item"><span data-i18n="full_pack">Полный пакет (4 предмета)</span> <span class="price-val">1000 с.</span></div>
-            <br>
-            <p style="font-size: 0.9rem; color: #666;">⏰ Ежедневно (после 14:00)</p>
-            
+            <br><p style="font-size: 0.9rem; color: #666;">⏰ Ежедневно (после 14:00)</p>
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-            
             <h3 class="section-title"><i class="fas fa-map-marker-alt"></i> <span data-i18n="addr_title">Адрес</span></h3>
-            <div class="location-item">
-                <span class="loc-name" data-i18n="loc_asht">Филиал «Мехробод» (Ашт)</span>
-                <span class="loc-addr" data-i18n="addr_asht">пос. Мехробод (Гимназия Пайравон)</span>
-                <a href="tel:+992003003044" class="loc-phone">📞 (+992) 003-003-044</a>
-            </div>
+            <div class="location-item"><span class="loc-name" data-i18n="loc_asht">Филиал «Мехробод» (Ашт)</span><span class="loc-addr" data-i18n="addr_asht">пос. Мехробод (Гимназия Пайравон)</span><a href="tel:+992003003044" class="loc-phone">📞 (+992) 003-003-044</a></div>
         </div>
 
         <div class="info-card" style="display: block;">
@@ -479,157 +181,102 @@
                 <li data-i18n="inc_6">Отчеты для родителей</li>
             </ul>
         </div>
-
     </div>
 
     <div class="sticky-footer">
-        <button id="cta-btn" onclick="openInstagram()" class="cta-btn">
-            <i class="fab fa-instagram"></i> <span data-i18n="cta_btn">Записаться</span>
-        </button>
+        <a id="cta-link" href="#" class="cta-btn">
+            <i class="fab fa-whatsapp"></i> <span data-i18n="cta_btn">Записаться</span>
+        </a>
     </div>
 
     <script>
-        // ДАННЫЕ ДЛЯ ПЕРЕВОДА
         const translations = {
             ru: {
-                cluster: "5 Кластер",
-                title: "Курсы в Мед",
-                subtitle: "Подготовка к поступлению в вузы Таджикистана и России",
-                exp: "Опыта",
-                alumni: "Выпускников",
-                ai: "Умная платформа",
-                free: "Бесплатно",
-                books: "Все учебники",
-                city_dushanbe: "Душанбе",
-                city_khujand: "Худжанд",
-                city_isfara: "Исфара",
-                city_asht: "Ашт",
-                price_title: "Стоимость обучения",
-                taj_lang: "Тадж. язык",
-                schedule_dushanbe: "⏰ Ежедневно 14:00 - 20:00",
-                schedule_khujand: "⏰ Ежедневно 14:00 - 19:00",
-                schedule_isfara: "⏰ Ежедневно 14:00 - 18:00",
-                full_pack: "Пакет (4 предмета)",
-                addr_title: "Адреса филиалов",
-                loc_vatan: "Филиал «Ватан»",
-                addr_vatan: "ул. Айни 29/9 (ТЦ Ватан, Садбарг)",
-                loc_tsum: "Филиал «ЦУМ»",
-                addr_tsum: "пр. Рудаки 66, «Пайкар»",
-                loc_82: "Филиал «82 мкр»",
-                addr_82: "ул. Б. Гафурова 32А, City Mall",
-                loc_coop: "Филиал «Кооператор»",
-                addr_coop: "пр. К. Худжанди 140 (Гимназия №4)",
-                loc_19: "Филиал «19 мкр»",
-                addr_19: "19 мкр, дом 38 (Кохи Матбуот)",
-                loc_new: "Филиал «Ҷаҳони Нав»",
-                addr_new: "Здание «Ҷаҳони Нав», 3-й этаж",
-                loc_asht: "Филиал «Мехробод» (Ашт)",
-                addr_asht: "пос. Мехробод (Гимназия Пайравон)",
-                included_title: "В обучение входит:",
-                inc_1: "Лекционные и практические занятия",
-                inc_2: "Бесплатные учебные материалы",
-                inc_3: "Доступ к AI-платформе repetitor.mobi",
-                inc_4: "Тестирование на каждом уроке",
-                inc_5: "Пробные экзамены с разбором",
-                inc_6: "Ежедневные отчеты об успеваемости",
+                cluster: "5 Кластер", title: "Курсы в Мед", subtitle: "Подготовка к поступлению в вузы Таджикистана и России",
+                exp: "Опыта", alumni: "Выпускников", ai: "Умная платформа", free: "Бесплатно", books: "Все учебники",
+                city_dushanbe: "Душанбе", city_khujand: "Худжанд", city_isfara: "Исфара", city_asht: "Ашт",
+                price_title: "Стоимость обучения", taj_lang: "Тадж. язык",
+                schedule_dushanbe: "⏰ Ежедневно 14:00 - 20:00", schedule_khujand: "⏰ Ежедневно 14:00 - 19:00", schedule_isfara: "⏰ Ежедневно 14:00 - 18:00",
+                full_pack: "Пакет (4 предмета)", addr_title: "Адреса филиалов",
+                loc_vatan: "Филиал «Ватан»", addr_vatan: "ул. Айни 29/9 (ТЦ Ватан, Садбарг)",
+                loc_tsum: "Филиал «ЦУМ»", addr_tsum: "пр. Рудаки 66, «Пайкар»",
+                loc_82: "Филиал «82 мкр»", addr_82: "ул. Б. Гафурова 32А, City Mall",
+                loc_coop: "Филиал «Кооператор»", addr_coop: "пр. К. Худжанди 140 (Гимназия №4)",
+                loc_19: "Филиал «19 мкр»", addr_19: "19 мкр, дом 38 (Кохи Матбуот)",
+                loc_new: "Филиал «Ҷаҳони Нав»", addr_new: "Здание «Ҷаҳони Нав», 3-й этаж",
+                loc_asht: "Филиал «Мехробод» (Ашт)", addr_asht: "пос. Мехробод (Гимназия Пайравон)",
+                included_title: "В обучение входит:", inc_1: "Лекционные и практические занятия", inc_2: "Бесплатные учебные материалы", inc_3: "Доступ к AI-платформе repetitor.mobi", inc_4: "Тестирование на каждом уроке", inc_5: "Пробные экзамены с разбором", inc_6: "Ежедневные отчеты об успеваемости",
                 cta_btn: "Записаться"
             },
             tj: {
-                cluster: "Кластери 5",
-                title: "Курсҳои Тиббӣ",
-                subtitle: "Омодагӣ барои дохилшавӣ ба донишгоҳҳои Тоҷикистон ва Русия",
-                exp: "Таҷриба",
-                alumni: "Хатмкунандагон",
-                ai: "AI-платформа",
-                free: "Ройгон",
-                books: "Ҳама китобҳо",
-                city_dushanbe: "Душанбе",
-                city_khujand: "Хуҷанд",
-                city_isfara: "Исфара",
-                city_asht: "Ашт",
-                price_title: "Нархи таҳсил",
-                taj_lang: "Забони тоҷикӣ",
-                schedule_dushanbe: "⏰ Ҳамарӯза 14:00 - 20:00",
-                schedule_khujand: "⏰ Ҳамарӯза 14:00 - 19:00",
-                schedule_isfara: "⏰ Ҳамарӯза 14:00 - 18:00",
-                full_pack: "Маҷмӯа (4 фан)",
-                addr_title: "Суроғаҳои мо",
-                loc_vatan: "Филиали «Ватан»",
-                addr_vatan: "кӯч. Айнӣ 29/9 (МС Ватан)",
-                loc_tsum: "Филиали «ЦУМ»",
-                addr_tsum: "хиёб. Рӯдакӣ 66, «Пайкар»",
-                loc_82: "Филиали «82 мкр»",
-                addr_82: "кӯч. Б. Ғафуров 32А, City Mall",
-                loc_coop: "Филиали «Кооператор»",
-                addr_coop: "хиёб. К. Хуҷандӣ 140 (Гимназияи №4)",
-                loc_19: "Филиали «19 мкр»",
-                addr_19: "19 мкр, бинои 38 (Кохи Матбуот)",
-                loc_new: "Филиали «Ҷаҳони Нав»",
-                addr_new: "Бинои «Ҷаҳони Нав», ошёнаи 3",
-                loc_asht: "Филиали «Меҳробод» (Ашт)",
-                addr_asht: "ш. Меҳробод (Гимназияи Пайравон)",
-                included_title: "Ба нарх дохил аст:",
-                inc_1: "Дарсҳои лексионӣ ва амалӣ",
-                inc_2: "Маводҳои таълимии ройгон",
-                inc_3: "AI-платформаи repetitor.mobi",
-                inc_4: "Тест дар ҳар як дарс",
-                inc_5: "Имтиҳонҳои намунавӣ бо таҳлил",
-                inc_6: "Гузоришҳои ҳаррӯза ба волидон",
+                cluster: "Кластери 5", title: "Курсҳои Тиббӣ", subtitle: "Омодагӣ барои дохилшавӣ ба донишгоҳҳои Тоҷикистон ва Русия",
+                exp: "Таҷриба", alumni: "Хатмкунандагон", ai: "AI-платформа", free: "Ройгон", books: "Ҳама китобҳо",
+                city_dushanbe: "Душанбе", city_khujand: "Хуҷанд", city_isfara: "Исфара", city_asht: "Ашт",
+                price_title: "Нархи таҳсил", taj_lang: "Забони тоҷикӣ",
+                schedule_dushanbe: "⏰ Ҳамарӯза 14:00 - 20:00", schedule_khujand: "⏰ Ҳамарӯза 14:00 - 19:00", schedule_isfara: "⏰ Ҳамарӯза 14:00 - 18:00",
+                full_pack: "Маҷмӯа (4 фан)", addr_title: "Суроғаҳои мо",
+                loc_vatan: "Филиали «Ватан»", addr_vatan: "кӯч. Айнӣ 29/9 (МС Ватан)",
+                loc_tsum: "Филиали «ЦУМ»", addr_tsum: "хиёб. Рӯдакӣ 66, «Пайкар»",
+                loc_82: "Филиали «82 мкр»", addr_82: "кӯч. Б. Ғафуров 32А, City Mall",
+                loc_coop: "Филиали «Кооператор»", addr_coop: "хиёб. К. Хуҷандӣ 140 (Гимназияи №4)",
+                loc_19: "Филиали «19 мкр»", addr_19: "19 мкр, бинои 38 (Кохи Матбуот)",
+                loc_new: "Филиали «Ҷаҳони Нав»", addr_new: "Бинои «Ҷаҳони Нав», ошёнаи 3",
+                loc_asht: "Филиали «Меҳробод» (Ашт)", addr_asht: "ш. Меҳробод (Гимназияи Пайравон)",
+                included_title: "Ба нарх дохил аст:", inc_1: "Дарсҳои лексионӣ ва амалӣ", inc_2: "Маводҳои таълимии ройгон", inc_3: "AI-платформаи repetitor.mobi", inc_4: "Тест дар ҳар як дарс", inc_5: "Имтиҳонҳои намунавӣ бо таҳлил", inc_6: "Гузоришҳои ҳаррӯза ба волидон",
                 cta_btn: "Номнавис шудан"
             }
         };
 
+        // --- ЛОГИКА ТЕЛЕФОНОВ ДЛЯ ГОРОДОВ ---
+        const cityPhones = {
+            dushanbe: "992003003007",
+            khujand: "992003003055", // Номер Кооператора как основной для Худжанда
+            isfara: "992003003099",
+            asht: "992003003044"
+        };
+
         let currentLang = 'ru';
+        let currentCity = 'dushanbe'; // По умолчанию Душанбе
 
         function setLang(lang) {
             currentLang = lang;
-            
-            // Меняем кнопки
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-
-            // Меняем тексты
             document.querySelectorAll('[data-i18n]').forEach(elem => {
                 const key = elem.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    elem.innerText = translations[lang][key];
-                }
+                if (translations[lang][key]) elem.innerText = translations[lang][key];
             });
+            updateLink(); // Обновляем ссылку (меняется текст)
         }
 
         function setCity(cityId) {
+            currentCity = cityId; // Запоминаем выбранный город
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-
-            document.querySelectorAll('.info-card').forEach(card => {
-                if (card.id) {
-                    card.classList.remove('active');
-                }
-            });
+            document.querySelectorAll('.info-card').forEach(card => { if (card.id) card.classList.remove('active'); });
             document.getElementById(cityId).classList.add('active');
+            updateLink(); // Обновляем ссылку (меняется номер телефона)
         }
 
-        // ЛОГИКА ОТКРЫТИЯ INSTAGRAM
-        function openInstagram() {
-            const username = "repetitor.tj";
-            
-            // Проверка: это телефон?
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // Если телефон - пытаемся открыть приложение
-                // instagram://user?username=... открывает профиль в приложении БЕЗ логина
-                window.location.href = `instagram://user?username=${username}`;
-                
-                // На случай если приложение не установлено, через секунду откроем браузер
-                setTimeout(() => {
-                    window.location.href = `https://www.instagram.com/${username}/`;
-                }, 1000);
+        // --- ЛОГИКА WHATSAPP ---
+        function updateLink() {
+            const btn = document.getElementById('cta-link');
+            const phone = cityPhones[currentCity]; // Берем номер для текущего города
+            let text = '';
+
+            if (currentLang === 'ru') {
+                text = 'Здравствуйте, хочу записаться на курсы в МЕД (5 кластер)!';
             } else {
-                // Если компьютер - открываем сайт
-                window.open(`https://www.instagram.com/${username}/`, '_blank');
+                text = 'Салом, мехоҳам ба курсҳои МЕД (Кластери 5) номнавис шавам!';
             }
+
+            // Формируем ссылку на WhatsApp
+            const encodedText = encodeURIComponent(text);
+            btn.href = `https://wa.me/${phone}?text=${encodedText}`;
         }
+
+        // Запускаем при загрузке
+        updateLink();
 
     </script>
 </body>
